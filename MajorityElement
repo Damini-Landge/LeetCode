@@ -1,0 +1,24 @@
+/*
+Given an array of size n, find the majority element. The majority element is the element that appears more than ⌊ n/2 ⌋ times.
+
+You may assume that the array is non-empty and the majority element always exist in the array 
+
+*/ 
+
+class Solution {
+    func majorityElement(_ nums: [Int]) -> Int {
+       
+        var dict :[Int:Int] = [Int:Int]() 
+        for number in nums{
+            dict[number,default:0] += 1 
+        }
+         
+        for value in dict.keys{
+            if let count = dict[value] , count > nums.count/2{
+                return value
+            }
+        }
+        
+        return -1
+    }
+}
