@@ -1,0 +1,23 @@
+/*
+Given a positive integer, output its complement number. The complement strategy is to flip the bits of its binary representation.
+*/ 
+//We can have another operation like we do for finding complent , subtracting one and the shifing the numbers which is XOR operation 
+
+class Solution {
+    func findComplement(_ num: Int) -> Int {
+        var inverNumber = ""
+        var binaryNumber  = String(num,radix:2) 
+        for charcter in binaryNumber{
+            if charcter == "0" {
+                inverNumber = inverNumber + "1"
+            }else{
+                 inverNumber = inverNumber + "0"
+            }
+        } 
+       
+        if let componetValue =  Int(inverNumber,radix:2){
+            return componetValue
+        }
+        return  0
+    }
+}
