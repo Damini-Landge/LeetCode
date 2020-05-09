@@ -1,0 +1,48 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     public var val: Int
+ *     public var left: TreeNode?
+ *     public var right: TreeNode?
+ *     public init() { self.val = 0; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int) { self.val = val; self.left = nil; self.right = nil; }
+ *     public init(_ val: Int, _ left: TreeNode?, _ right: TreeNode?) {
+ *         self.val = val
+ *         self.left = left
+ *         self.right = right
+ *     }
+ * }
+ */
+class Solution {
+    func isCousins(_ root: TreeNode?, _ x: Int, _ y: Int) -> Bool {
+        if (root == nil ){
+            return false
+        } 
+        
+        let XDepthAndParent = traverse(root:root!,parent:root!,value:x,depth:1)  
+        let YDepthAndParent = traverse(root:root!,parent:root!,value:y,depth:1) 
+        
+        if (XDepthAndParent![0] == YDepthAndParent![0]) && (XDepthAndParent![1] != YDepthAndParent![1]){
+            return true
+        }
+        return false
+        
+    } 
+    
+    func traverse(root:TreeNode?,parent:TreeNode,value:Int,depth:Int)->[Int]?{
+        if (root == nil) {
+            return nil
+        }else if (root!.val == value){
+            return [depth,parent.val]
+        }else{
+            
+            if let result = traverse(root:root!.left,parent:root!,value:value,depth:depth+1){
+                return result
+            }else{
+               return traverse(root:root!.right,parent:root!,value:value,depth:depth+1)
+            }
+            
+        }
+        
+    }
+}
