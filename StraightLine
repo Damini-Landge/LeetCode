@@ -1,0 +1,42 @@
+class Solution {
+    func checkStraightLine(_ coordinates: [[Int]]) -> Bool { 
+        
+        if(coordinates.isEmpty){
+            return false 
+        }
+         
+        if coordinates.count  == 1 {
+            return false
+        } 
+         
+        let firstPoint = coordinates[0]
+        let secondPoint = coordinates[1] 
+        let x = (secondPoint[0] - firstPoint[0]) 
+        let slope =  x == 0 ? 0 :(secondPoint[1] - firstPoint[1])/x  
+        let cValue = secondPoint[1] - slope * secondPoint[0]
+        var prev = secondPoint
+        for i in 2..<coordinates.count{
+          let next = coordinates[i] 
+             
+           // let newSlope = (next[1] - prev[1])/(next[0] - prev[0]) 
+           // print(newSlope)  
+            
+            if(slope == 0){
+                if prev[0] != next[0]{
+                    if prev[1] != next [1]{
+                        return false
+                    }
+                }
+                 prev = next
+            }else{
+                if (next[1] != (slope * next[0]) + cValue){
+                    return false
+                }
+            }
+    
+          
+            
+        } 
+        return true
+    }
+}
